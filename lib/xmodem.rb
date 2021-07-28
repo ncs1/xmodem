@@ -73,8 +73,8 @@ module XMODEM
 
     expected_block = 1
     error_count = 0
-    last_block = ''
-    data = ''
+    last_block = +''
+    data = +''
     loop do
       rx_cmd = receive_getbyte(remote).ord
 
@@ -90,7 +90,7 @@ module XMODEM
         next
       end
 
-      data = ''
+      data = +''
       block = receive_getbyte(remote).ord
       block_check = receive_getbyte(remote).ord
       validity = :valid
@@ -103,7 +103,7 @@ module XMODEM
 
       if (block == expected_block) && (validity == :valid)
         local << last_block
-        last_block = ''
+        last_block = +''
       end
       block_size.times do
         b = receive_getbyte(remote)
@@ -159,7 +159,7 @@ module XMODEM
   # local:: must be an IO object containing the data to be sent
   def self.send(remote, local)
     block_number = 1
-    current_block = ''
+    current_block = +''
     sent_eot = false
 
     block_size.times do
@@ -198,7 +198,7 @@ module XMODEM
           next
         end
         block_number = ((block_number + 1) % 0x100)
-        current_block = ''
+        current_block = +''
         block_size.times do
           b = (local.eof? ? FILLER : local.getc)
           current_block << b

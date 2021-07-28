@@ -6,6 +6,7 @@ $LOAD_PATH.unshift(lib_path) unless $LOAD_PATH.include?(lib_path)
 
 require 'versioncheck'
 require 'xmodem/version'
+require 'amazing_print'
 
 rb_vc = VersionCheck.rubyversion
 unless rb_vc.have_version?(2, 1)
@@ -186,7 +187,7 @@ class XmodemTests < MiniTest::Test
       made_tx = true
     end
 
-    if rx_file.respond_to?(:putc)
+    if rx_file.respond_to?(:putc) && rx_file.respond_to?(:write)
       rx_filename = rx_file.class
       rx_file.rewind
     else
@@ -194,6 +195,7 @@ class XmodemTests < MiniTest::Test
       rx_file = File.new(rx_filename, 'wb+')
       made_rx = true
     end
+
     puts("#{test_description} : #{tx_filename}->#{rx_filename}")
 
     tx_thread = Thread.new { sendfile(tx_file) }
@@ -247,8 +249,8 @@ class XmodemTests < MiniTest::Test
     2000.times { |i| f << (i % 0x100).chr }
     f.close
 
-    txstring_io = StringIO.new('this is a test string')
-    rxstring_io = StringIO.new('')
+    txstring_io = StringIO.new(+'this is a test string')
+    rxstring_io = StringIO.new(+'')
 
     do_test(sample_text_file, 'crc-simple.test.txt', nil, nil, { mode: :crc })
     do_test(sample_bin_file, 'crc-simple.test.bin', nil, nil, { mode: :crc })
@@ -268,7 +270,7 @@ class XmodemTests < MiniTest::Test
     do_test(sample_bin_file, 'simple.test.bin')
     do_test(sample_bin_file, 'corrupt.test.bin', :corruption_in, 700)
 
-    bigstring = ''
+    bigstring = +''
     512.times { |i| bigstring << ((i % 0x100).chr * 128) }
     do_test(StringIO.new(bigstring), 'bigfile.test.txt')
 
