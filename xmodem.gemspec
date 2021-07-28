@@ -22,13 +22,18 @@ Gem::Specification.new do |spec|
   spec.rdoc_options  = %w(--charset=UTF-8)
   spec.extra_rdoc_files = %w(LICENSE.txt doc/xmodem.txt doc/xmodem1k.txt doc/xmodmcrc.txt doc/ymodem.txt)
 
-  spec.add_runtime_dependency "log4r", ">= 1.1"
+  spec.add_runtime_dependency "log4r"
 
-  spec.add_development_dependency "bundler",            ">= 2"
-  spec.add_development_dependency "rake",               ">= 0"
-  spec.add_development_dependency "VersionCheck",       ">= 1.0"
-  spec.add_development_dependency "simplecov",          ">= 0.9"
-  spec.add_development_dependency "minitest",           ">= 5.5"
-  spec.add_development_dependency "minitest-reporters", ">= 1.0"
-  spec.add_development_dependency "coveralls",          ">= 0.7"
+  spec.add_development_dependency "bundler"
+  spec.add_development_dependency "rake"
+  spec.add_development_dependency "VersionCheck"
+  spec.add_development_dependency "simplecov"
+  spec.add_development_dependency "minitest"
+  spec.add_development_dependency "minitest-reporters"
+  spec.add_development_dependency "coveralls"
+  spec.add_development_dependency "rubocop"
+  spec.add_development_dependency "rubocop-minitest"
+  spec.add_development_dependency "rubocop-performance"
+  spec.add_development_dependency "rubocop-rake"
+  spec.add_development_dependency "rubocop-thread_safety"
 end
