@@ -5,11 +5,12 @@
 [![Dependency Status](https://gemnasium.com/exsilium/xmodem.svg)](https://gemnasium.com/exsilium/xmodem)
 [![Code Climate](https://codeclimate.com/github/exsilium/xmodem/badges/gpa.svg)](https://codeclimate.com/github/exsilium/xmodem)
 
-A pure XMODEM implementation in Ruby for sender and receiver. Compatible with Ruby 1.9.3+
+A pure XMODEM implementation in Ruby for sender and receiver. Compatible with Ruby 2.6.8+
 
 ## Code Example
 
 To send a file within an IO socket:
+
 ```
 myFile = File.new("file_to_send.txt","rb")
 XMODEM::send(IOsocket, myFile);
@@ -17,6 +18,7 @@ myFile.close
 ```
 
 Receive a file:
+
 ```
 myFile = File.new("file_to_write.txt","wb+")
 XMODEM::receive(IOsocket, myFile)

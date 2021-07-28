@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = XMODEM::VERSION
   spec.authors       = ["Jonno Downes", "Sten Feldman"]
   spec.email         = ["exile@chamber.ee"]
-  spec.summary       = %q{A pure XMODEM implementation in Ruby for sender and receiver. Compatible with Ruby 1.9.3+}
+  spec.summary       = %q{A pure XMODEM implementation in Ruby for sender and receiver. Compatible with Ruby 2.6+}
   spec.description   = %q{A simple gem for XMODEM client and server application. Forked from modem_protocols and made to work with newer Rubies. Today the XMODEM protocol is widely used in embedded systems for OTA application firmware transfer.}
   spec.homepage      = "https://github.com/exsilium/xmodem"
   spec.license       = "Mozilla Public License 1.1"
