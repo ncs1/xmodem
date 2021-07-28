@@ -1,0 +1,20 @@
+require:
+  - rubocop-performance
+  - rubocop-thread_safety
+  - rubocop-rake
+  - rubocop-minitest
+
+Lint/NumberConversion:
+  Enabled: false
+
+AllCops:
+  TargetRubyVersion: 2.6.4
+  EnabledByDefault: true
+  NewCops: enable
+  UseCache: true
+  Exclude:
+    - '.git/**/*'
+    - 'tmp/**/*'
+    - 'bin/**/*'
+  CacheRootDirectory: tmp
+  MaxFilesInCache: 18000
