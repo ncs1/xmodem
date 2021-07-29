@@ -19,7 +19,6 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.has_rdoc      = true
   spec.rdoc_options  = %w[--charset=UTF-8]
   spec.extra_rdoc_files = %w[LICENSE.txt doc/xmodem.txt doc/xmodem1k.txt doc/xmodmcrc.txt doc/ymodem.txt]
 
