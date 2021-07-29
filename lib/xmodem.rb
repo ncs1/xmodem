@@ -6,14 +6,14 @@
 # License::   Mozilla Public License 1.1
 #
 
-require 'log4r'
-include Log4r
+require 'semantic_logger'
 
 module XMODEM
+  include SemanticLogger::Loggable
+
   XMODEM_MAX_TIMEOUTS = 5  # how many timeouts in a row before the sender gives up?
   XMODEM_MAX_ERRORS = 10   # how many errors on a single block before the receiver gives up?
   XMODEM_CRC_ATTEMPTS = 3  # how many times should receiver attempt to use CRC?
-  LOG_NAME = 'XModem'
 
   @timeout_seconds = 5.0   # default timeout period
   @block_size = 128        # how many bytes (excluding header & checksum) in each block?
@@ -535,11 +535,6 @@ module XMODEM
     raise(RXSynchError) if remote.eof?
 
     remote.getc
-  end
-
-  def self.logger
-    Logger.new(LOG_NAME) if Logger[LOG_NAME].nil?
-    Logger[LOG_NAME]
   end
 
   class RXTimeout < RuntimeError

@@ -1,12 +1,7 @@
 # frozen_string_literal: true
 
-# make sure the relevant folder with our libraries is in the require path
-lib_path = File.expand_path("#{File.dirname(__FILE__)}//..//lib")
-$LOAD_PATH.unshift(lib_path) unless $LOAD_PATH.include?(lib_path)
-
 require 'versioncheck'
 require 'xmodem/version'
-require 'amazing_print'
 
 rb_vc = VersionCheck.rubyversion
 unless rb_vc.have_version?(2, 1)
@@ -25,13 +20,17 @@ require 'minitest/reporters'
 
 MiniTest::Reporters.use!
 
+require 'amazing_print'
+
+require 'semantic_logger'
+SemanticLogger.default_level = :trace
+SemanticLogger.add_appender(io: $stdout)
+
 require 'xmodem'
 require 'socket'
 require 'stringio'
 
 Thread.abort_on_exception = true
-
-XMODEM.logger.outputters = Outputter.stdout
 
 XMODEM.timeout_seconds = 0.4 # so we don't wait so long for retransmissions
 
