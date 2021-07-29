@@ -117,7 +117,7 @@ class XmodemTests < MiniTest::Test
       if ENV['OS'] == 'Windows_NT'
         @@server = TCPServer.new(LOCAL_PORT)
       else
-        File.delete(@@unix_socket) if FileTest.exists?(@@unix_socket)
+        File.delete(@@unix_socket) if FileTest.exist?(@@unix_socket)
         @@server = UNIXServer.new(@@unix_socket)
       end
     else
